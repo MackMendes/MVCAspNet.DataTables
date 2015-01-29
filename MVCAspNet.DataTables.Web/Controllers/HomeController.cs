@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCAspNet.DataTables.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +26,14 @@ namespace MVCAspNet.DataTables.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult DataTables()
+        {
+            var cliente = new Cliente();
+
+
+            return View(cliente);
         }
     }
 }

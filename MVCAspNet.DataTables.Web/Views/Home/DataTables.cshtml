@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MVCAspNet.DataTables.Web.Models.Cliente>
+
+@{
+    ViewBag.Title = "DataTables";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DataTables</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="_tbDataTables" lengthchange="false" filter="false">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th sortable="false" visible="false">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Idade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div style="margin-top: 50px; border: 1px solid black; padding: 10px;">
+    <h3>
+        Atribuindo o plugin DataTables na Table já preenchida
+    </h3>
+</div>
