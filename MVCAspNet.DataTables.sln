@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCAspNet.DataTables.UI.Web", "MVCAspNet.DataTables.Web\MVCAspNet.DataTables.UI.Web.csproj", "{A875259B-4D72-4738-9C2C-3E90CF803F90}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{51D10932-861D-4064-A340-E01936702D6C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{BEC5BFFB-AEC5-41FF-A592-FA77BB0FCC36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCAspNet.DataTables.Framework", "MVCAspNet.DataTables.Framework\MVCAspNet.DataTables.Framework.csproj", "{B60D3C46-F112-4C17-9499-FE95C26521BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +31,10 @@ Global
 		{B4EA4771-E01C-4804-812C-731A1FD17009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4EA4771-E01C-4804-812C-731A1FD17009}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4EA4771-E01C-4804-812C-731A1FD17009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B60D3C46-F112-4C17-9499-FE95C26521BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B60D3C46-F112-4C17-9499-FE95C26521BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B60D3C46-F112-4C17-9499-FE95C26521BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B60D3C46-F112-4C17-9499-FE95C26521BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +42,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A875259B-4D72-4738-9C2C-3E90CF803F90} = {B7AAE79D-A695-4FA7-95B1-EDE8DE8DB9A0}
 		{B4EA4771-E01C-4804-812C-731A1FD17009} = {15079405-13AA-495E-A5E6-346A7C3823D8}
+		{B60D3C46-F112-4C17-9499-FE95C26521BE} = {51D10932-861D-4064-A340-E01936702D6C}
 	EndGlobalSection
 EndGlobal

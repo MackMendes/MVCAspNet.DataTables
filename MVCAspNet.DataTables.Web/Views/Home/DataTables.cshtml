@@ -5,10 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/DataTables/css")
+
 <h2>DataTables</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar Cliente", "Create")
 </p>
 <table class="_tbDataTables" lengthchange="false" filter="false">
     <thead>
