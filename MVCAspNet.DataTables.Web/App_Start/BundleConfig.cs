@@ -34,7 +34,7 @@ namespace MVCAspNet.DataTables.Web
 
             bundles.Add(new StyleBundle("~/DataTables/css").Include(
                       "~/Content/DataTables-1.10.4/css/jquery.dataTables.css",
-                      "~/Content/DataTables-1.10.4/css/dataTables.responsive.css",
+                      "~/Content/DataTables-1.10.4/css/dataTables.jqueryui.css",
                       "~/Content/site.css"));
 
 

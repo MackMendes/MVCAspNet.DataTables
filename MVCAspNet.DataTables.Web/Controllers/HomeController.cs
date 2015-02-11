@@ -11,7 +11,8 @@ namespace MVCAspNet.DataTables.Web.Controllers
 
         public HomeController()
         {
-            _listCliente = new Cliente().GetListFakeCliente(20);
+            if (_listCliente == null)
+                _listCliente = new Cliente().GetListFakeCliente(4);
         }
 
         public ActionResult Index()
@@ -20,11 +21,39 @@ namespace MVCAspNet.DataTables.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult CadastrarCliente()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CadastrarCliente(Cliente _cliente)
+        {
+            try
+            {
+                _cliente.IdCliente = (_listCliente.Count + 1);
+                _listCliente.Add(_cliente);
+
+                return RedirectToAction("DataTables");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpGet]
         public ActionResult DataTables()
         {
-            var cliente = _listCliente;
-            return View(cliente);
+            return View(_listCliente);
         }
+
+        [HttpGet]
+        public ActionResult DataTablesAjax()
+        {
+            return View(_listCliente);
+        }
+
 
         public ActionResult ProcessarDataTables()
         {

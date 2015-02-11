@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MVCAspNet.DataTables.Web.Models.Cliente>
+
+@{
+    ViewBag.Title = "DataTablesAjax";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/DataTables/css")
+
+<h2>DataTablesAjax</h2>
+
+<p>
+    @Html.ActionLink("Criar Cliente", "CadastrarCliente")
+</p>
+<div class="divTopTable">
+    <h3>
+        Requisição 100% Ajax
+    </h3>
+</div>
+<table class="_tbDataTables" ajaxsource="ProcessarDataTables" serverside="true">
+    <thead>
+        <tr>
+            <th column="IdCliente">
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th column="Nome">
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th column="Idade">
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th column="Fone">
+                @Html.DisplayNameFor(model => model.Fone)
+            </th>
+            <th column="Email">
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+
+</table>

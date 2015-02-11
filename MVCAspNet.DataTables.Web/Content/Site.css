@@ -22,3 +22,5 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.divTopTable{ margin-top: 50px; padding: 10px;}

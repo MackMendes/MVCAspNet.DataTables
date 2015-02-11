@@ -11,9 +11,15 @@
 <h2>DataTables</h2>
 
 <p>
-    @Html.ActionLink("Criar Cliente", "Create")
+    @Html.ActionLink("Criar Cliente", "CadastrarCliente")
 </p>
-<table class="_tbDataTables" lengthchange="false" filter="false">
+
+<div class="divTopTable">
+    <h3>
+        Atribuindo o plugin DataTables na Table já preenchida
+    </h3>
+</div>
+<table class="_tbDataTables" lengthchange="false" filter="true">
     <thead>
         <tr>
             <th>
@@ -31,7 +37,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            <th sortable="false" visible="false">
+            <th sortable="false" visible="true">
             </th>
         </tr>
     </thead>
@@ -63,9 +69,3 @@
         }
     </tbody>
 </table>
-
-<div style="margin-top: 50px; border: 1px solid black; padding: 10px;">
-    <h3>
-        Atribuindo o plugin DataTables na Table já preenchida
-    </h3>
-</div>

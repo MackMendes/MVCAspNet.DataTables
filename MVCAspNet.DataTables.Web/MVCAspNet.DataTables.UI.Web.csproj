@@ -248,6 +248,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\DataTables.cshtml" />
+    <Content Include="Views\Home\CadastrarCliente.cshtml" />
+    <Content Include="Views\Home\DataTablesAjax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
