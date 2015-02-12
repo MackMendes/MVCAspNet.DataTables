@@ -29,6 +29,9 @@ namespace MVCAspNet.DataTables.Web.Controllers
         [HttpPost]
         public ActionResult CadastrarCliente(Cliente _cliente)
         {
+            if(!ModelState.IsValid)
+                return View("CadastrarCliente", _cliente);
+
             try
             {
                 _cliente.IdCliente = (_listCliente.Count + 1);

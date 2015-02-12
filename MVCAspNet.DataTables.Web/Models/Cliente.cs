@@ -1,6 +1,8 @@
 ﻿using FizzWare.NBuilder;
 using MVCAspNet.DataTables.Framework;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,14 +12,23 @@ namespace MVCAspNet.DataTables.Web.Models
     {
         public int IdCliente { get; set; }
 
+        [Required(ErrorMessage = "Por favor, informe o Nome.")]
         public string Nome { get; set; }
 
+        [Required(ErrorMessage = "Por favor, informe a idade.")]
+        [Range(0, 110)]
         public int Idade { get; set; }
 
-        public EnumSexo Sexo { get; set; }
+        [Required]
+        [SexoEnumValidationAttribute(ErrorMessage = "Por favor, informe o sexo")]
+        public EnumSexo? Sexo { get; set; }
 
+        [Required]
+        [RegularExpression(@"^\(\d{2}\) \d{4}-\d{4}$", ErrorMessage = "Por favor, informe um telefone válido.")]
         public string Fone { get; set; }
 
+        [Required]
+        [RegularExpression(@"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$", ErrorMessage = "Por favor, informe um e-mail válido.")]
         public string Email { get; set; }
 
         public object GetObjectClienteByRequest(IList<Cliente> clientes_, HttpRequestBase request_)
@@ -54,4 +65,20 @@ namespace MVCAspNet.DataTables.Web.Models
             return Builder<Cliente>.CreateListOfSize(quantidadeList_).Build();
         }
     }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class SexoEnumValidationAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            var sexo = (EnumSexo?)value;
+
+            if (sexo.HasValue)
+                return true;
+
+            return false;
+        }
+    }
+
+
 }
