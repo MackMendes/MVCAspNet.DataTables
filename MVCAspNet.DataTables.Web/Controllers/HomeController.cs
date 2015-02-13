@@ -4,16 +4,13 @@ using System.Web.Mvc;
 
 namespace MVCAspNet.DataTables.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Core.BaseController<Cliente>
     {
-        private static IList<Cliente> _listCliente;
         private readonly Cliente _cliente = new Cliente();
 
         public HomeController()
-        {
-            if (_listCliente == null)
-                _listCliente = new Cliente().GetListFakeCliente(4);
-        }
+            : base(new Cliente().GetListFakeCliente(4))
+        { }
 
         public ActionResult Index()
         {
@@ -21,53 +18,28 @@ namespace MVCAspNet.DataTables.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult CadastrarCliente()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult CadastrarCliente(Cliente _cliente)
-        {
-            if(!ModelState.IsValid)
-                return View("CadastrarCliente", _cliente);
-
-            try
-            {
-                _cliente.IdCliente = (_listCliente.Count + 1);
-                _listCliente.Add(_cliente);
-
-                return RedirectToAction("DataTables");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        [HttpGet]
         public ActionResult DataTables()
         {
-            return View(_listCliente);
+            return View(_listT);
         }
 
         [HttpGet]
         public ActionResult DataTablesAjax()
         {
-            return View(_listCliente);
+            return View(_listT);
         }
 
 
         public ActionResult ProcessarDataTables()
         {
-            var resultado = _cliente.GetObjectClienteByRequest(_listCliente, Request);
+            var resultado = _cliente.GetObjectClienteByRequest(_listT, Request);
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
 
 
         public ActionResult ProcessarAoIniciar()
         {
-            var list = _cliente.GetObjectInicioCarregar(_listCliente);
+            var list = _cliente.GetObjectInicioCarregar(_listT);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

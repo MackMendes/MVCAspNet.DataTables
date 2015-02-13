@@ -1,17 +1,17 @@
 ﻿@model MVCAspNet.DataTables.Web.Models.Cliente
 
 @{
-    ViewBag.Title = "CadastrarCliente";
+    ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CadastrarCliente</h2>
+<h2>Editar</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>Cliente</h4>
         <hr />
@@ -32,10 +32,11 @@
                 @Html.ValidationMessageFor(model => model.Idade, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Sexo, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.Sexo, optionLabel: "-- Selecione --", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,7 +59,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </div>
     </div>
