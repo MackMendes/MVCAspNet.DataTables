@@ -1,8 +1,6 @@
 ﻿using MVCAspNet.DataTables.Web.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MVCAspNet.DataTables.Web.Controllers
@@ -22,8 +20,7 @@ namespace MVCAspNet.DataTables.Web.Controllers
         // GET: Cliente/Detalhe/5
         public ActionResult Detalhe(int id)
         {
-            var cliente = _listT.FirstOrDefault(x => x.IdCliente == id);
-            return View(cliente);
+            return GetClienteById(id);
         }
 
         [HttpGet]
@@ -54,8 +51,7 @@ namespace MVCAspNet.DataTables.Web.Controllers
         // GET: Cliente/Edit/5
         public ActionResult Editar(int id)
         {
-            var cliente = _listT.First(x => x.IdCliente == id);
-            return View(cliente);
+            return GetClienteById(id);
         }
 
         // POST: Cliente/Edit/5
@@ -68,7 +64,7 @@ namespace MVCAspNet.DataTables.Web.Controllers
                 _listT.Remove(cliente);
                 _listT.Add(cliente_);
 
-                return RedirectToAction("DataTablesAjax", "Home");
+                return RedirectToAction("DataTables", "Home");
             }
             catch
             {
@@ -79,7 +75,7 @@ namespace MVCAspNet.DataTables.Web.Controllers
         // GET: Cliente/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return GetClienteById(id);
         }
 
         // POST: Cliente/Delete/5
@@ -89,14 +85,20 @@ namespace MVCAspNet.DataTables.Web.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                var cliente = _listT.First(x => x.IdCliente == id);
+                _listT.Remove(cliente);
+                return RedirectToAction("DataTables", "Home");
             }
             catch
             {
                 return View();
             }
+        }
+
+        private ViewResult GetClienteById(int id)
+        {
+            var cliente = _listT.First(x => x.IdCliente == id);
+            return View(cliente);
         }
     }
 }

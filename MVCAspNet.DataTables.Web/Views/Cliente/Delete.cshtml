@@ -1,16 +1,19 @@
 ﻿@model MVCAspNet.DataTables.Web.Models.Cliente
 
 @{
-    ViewBag.Title = "Detalhe";
+    ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detalhe</h2>
+<h2>Deletar</h2>
 
+<h3>Realmente gostaria de deletar esse cliente?</h3>
 <div>
     <h4>Cliente</h4>
     <hr />
     <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.IdCliente)
+
         <dt>
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
@@ -25,14 +28,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Idade)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sexo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sexo)
         </dd>
 
         <dt>
@@ -52,8 +47,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "DataTables", "Home")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Editar", "Editar", "Cliente", new { id = Model.IdCliente }, new { @class = "" })
-    @Html.ActionLink("Voltar", "DataTables", "Home")
-</p>
