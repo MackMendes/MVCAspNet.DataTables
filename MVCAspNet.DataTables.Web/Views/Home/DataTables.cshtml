@@ -11,7 +11,7 @@
 <h2>DataTables</h2>
 
 <p>
-    @Html.ActionLink("Criar Cliente", "CadastrarCliente")
+    @Html.ActionLink("Criar Cliente", "Cadastrar", "Cliente")
 </p>
 
 <div class="divTopTable">
@@ -61,9 +61,9 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Editar", "Editar", "Cliente", new { id = item.IdCliente }, new { @class = "" }) |
+                    @Html.ActionLink("Detalhe", "Detalhe", "Cliente", new { id = item.IdCliente }, new { @class = "" }) |
+                    @Html.ActionLink("Delete", "Delete", "Cliente", new { id = item.IdCliente }, new { @class = "" })
                 </td>
             </tr>
         }

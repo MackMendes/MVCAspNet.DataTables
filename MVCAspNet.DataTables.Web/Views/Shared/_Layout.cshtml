@@ -25,6 +25,14 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("DataTables", "DataTables", "Home")</li>
                     <li>@Html.ActionLink("DataTables Ajax", "DataTablesAjax", "Home")</li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            Cliente <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menuitem">
+                            <li>@Html.ActionLink("Cadastrar", "Cadastrar", "Cliente")</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

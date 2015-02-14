@@ -43,7 +43,7 @@ namespace MVCAspNet.DataTables.Web.Controllers
                 cliente_.IdCliente = (_listT.Count + 1);
                 _listT.Add(cliente_);
 
-                return RedirectToAction("DataTables");
+                return RedirectToAction("DataTables", "Home");
             }
             catch
             {
@@ -54,7 +54,8 @@ namespace MVCAspNet.DataTables.Web.Controllers
         // GET: Cliente/Edit/5
         public ActionResult Editar(int id)
         {
-            return View();
+            var cliente = _listT.First(x => x.IdCliente == id);
+            return View(cliente);
         }
 
         // POST: Cliente/Edit/5
@@ -63,9 +64,11 @@ namespace MVCAspNet.DataTables.Web.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                var cliente = _listT.First(x => x.IdCliente == cliente_.IdCliente);
+                _listT.Remove(cliente);
+                _listT.Add(cliente_);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("DataTablesAjax", "Home");
             }
             catch
             {
