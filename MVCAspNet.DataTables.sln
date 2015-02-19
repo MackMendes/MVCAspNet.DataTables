@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{51D109
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCAspNet.DataTables.Framework", "MVCAspNet.DataTables.Framework\MVCAspNet.DataTables.Framework.csproj", "{B60D3C46-F112-4C17-9499-FE95C26521BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCAspNet.DataTables.HtmlHelpers", "MVCAspNet.DataTables.HtmlHelpers\MVCAspNet.DataTables.HtmlHelpers.csproj", "{6FA16D64-F84A-405F-9949-B40D15A98ADE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{B60D3C46-F112-4C17-9499-FE95C26521BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B60D3C46-F112-4C17-9499-FE95C26521BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B60D3C46-F112-4C17-9499-FE95C26521BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA16D64-F84A-405F-9949-B40D15A98ADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA16D64-F84A-405F-9949-B40D15A98ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA16D64-F84A-405F-9949-B40D15A98ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA16D64-F84A-405F-9949-B40D15A98ADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,5 +49,6 @@ Global
 		{A875259B-4D72-4738-9C2C-3E90CF803F90} = {B7AAE79D-A695-4FA7-95B1-EDE8DE8DB9A0}
 		{B4EA4771-E01C-4804-812C-731A1FD17009} = {15079405-13AA-495E-A5E6-346A7C3823D8}
 		{B60D3C46-F112-4C17-9499-FE95C26521BE} = {51D10932-861D-4064-A340-E01936702D6C}
+		{6FA16D64-F84A-405F-9949-B40D15A98ADE} = {51D10932-861D-4064-A340-E01936702D6C}
 	EndGlobalSection
 EndGlobal
