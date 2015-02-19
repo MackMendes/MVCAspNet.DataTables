@@ -12,11 +12,6 @@ namespace MVCAspNet.DataTables.Web.Controllers
             : base(new Cliente().GetListFakeCliente(4))
         { }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult DataTables()
         {
@@ -29,13 +24,17 @@ namespace MVCAspNet.DataTables.Web.Controllers
             return View(_listT);
         }
 
+        [HttpGet]
+        public ActionResult DataTablesHTMLHelper()
+        {
+            return View(_listT);
+        }
 
         public ActionResult ProcessarDataTables()
         {
             var resultado = _cliente.GetObjectClienteByRequest(_listT, Request);
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
-
 
         public ActionResult ProcessarAoIniciar()
         {

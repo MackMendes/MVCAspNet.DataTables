@@ -255,6 +255,7 @@
     <Content Include="Views\Cliente\Detalhe.cshtml" />
     <Content Include="Views\Cliente\Editar.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Home\DataTablesHTMLHelper.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,6 +271,10 @@
     <ProjectReference Include="..\MVCAspNet.DataTables.Framework\MVCAspNet.DataTables.Framework.csproj">
       <Project>{b60d3c46-f112-4c17-9499-fe95c26521be}</Project>
       <Name>MVCAspNet.DataTables.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCAspNet.DataTables.HtmlHelpers\MVCAspNet.DataTables.HtmlHelpers.csproj">
+      <Project>{6fa16d64-f84a-405f-9949-b40d15a98ade}</Project>
+      <Name>MVCAspNet.DataTables.HtmlHelpers</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

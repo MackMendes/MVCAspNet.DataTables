@@ -1,0 +1,19 @@
+﻿@using MVCAspNet.DataTables.HtmlHelpers.Grid
+
+@model IEnumerable<Cliente>
+
+@{
+    ViewBag.Title = "DataTablesHTMLHelper";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/DataTables/css")
+
+<h2>DataTables - HTMLHelper</h2>
+
+<p>
+    @Html.ActionLink("Criar Cliente", "CadastrarCliente")
+</p>
+
+@(Html.DataTablesJquery<Cliente>(Model, true, true))

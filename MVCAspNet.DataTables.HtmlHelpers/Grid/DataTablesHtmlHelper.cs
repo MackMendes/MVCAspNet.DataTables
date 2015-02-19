@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
+using System.Web.Mvc;
 
 namespace MVCAspNet.DataTables.HtmlHelpers.Grid
 {
     public static class DataTablesHtmlHelper
     {
-        // http://www.devmedia.com.br/html-helpers-criando-componentes-web-customizados-em-asp-net-mvc/27703
-        // http://www.linhadecodigo.com.br/artigo/3010/aspnet-mvc-custom-helpers.aspx
-
+        /// <summary>
+        /// HTML Helper do DataTables Jquery
+        /// </summary>
+        /// <typeparam name="T">Tipo da Entidade </typeparam>
+        /// <param name="html"HTML Helper></param>
+        /// <param name="listT">Lista com os dados</param>
+        /// <param name="lengthchange">Se vai mostrar o "Alterar Tamanho de dados por página"</param>
+        /// <param name="filter">Se vai mostrar o campo textbox Filtro</param>
+        /// <returns></returns>
         public static MvcHtmlString DataTablesJquery<T>(this HtmlHelper html, IEnumerable<T> listT, bool lengthchange, bool filter)
         {
             var stringTable = new StringBuilder();
@@ -30,15 +33,20 @@ namespace MVCAspNet.DataTables.HtmlHelpers.Grid
             foreach (var itemT in listT)
             {
                 stringTable.Append("<tr>");
-                
+                var typeT = typeof(T);
+                PropertyInfo[] properties = typeT.GetProperties();
 
+                foreach (var propertyItem in properties)
+                {               
+                    stringTable.Append("<td>");
+                    stringTable.Append(propertyItem.GetValue(itemT));
+                    stringTable.Append("</td>");
+                }
 
                 stringTable.Append("</tr>");
             }
 
-            stringTable.Append("</tbody>");
-
-
+            stringTable.Append("</tbody></table>");
 
             return new MvcHtmlString(stringTable.ToString());
         }
