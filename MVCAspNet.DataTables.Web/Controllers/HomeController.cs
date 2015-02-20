@@ -21,13 +21,19 @@ namespace MVCAspNet.DataTables.Web.Controllers
         [HttpGet]
         public ActionResult DataTablesAjax()
         {
-            return View(_listT);
+            return View(new Cliente());
         }
 
         [HttpGet]
         public ActionResult DataTablesHTMLHelper()
         {
             return View(_listT);
+        }
+
+        [HttpGet]
+        public ActionResult DataTablesAjaxHTMLHelper()
+        {
+            return View();
         }
 
         public ActionResult ProcessarDataTables()

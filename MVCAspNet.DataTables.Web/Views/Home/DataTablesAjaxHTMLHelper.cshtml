@@ -1,0 +1,17 @@
+﻿@using MVCAspNet.DataTables.HtmlHelpers.Grid
+
+@{
+    ViewBag.Title = "DataTablesAjaxHTMLHelper";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/DataTables/css")
+
+<h2>DataTablesAjax - HTMLHelper (Requisição 100% Ajax)</h2>
+
+<p>
+    @Html.ActionLink("Criar Cliente", "CadastrarCliente")
+</p>
+
+@(Html.DataTablesJqueryAjax<Cliente>("ProcessarDataTables", serverSide: true))

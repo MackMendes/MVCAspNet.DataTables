@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVCAspNet.DataTables.Web.Models.Cliente>
+﻿@model MVCAspNet.DataTables.Web.Models.Cliente
 
 @{
     ViewBag.Title = "DataTablesAjax";
@@ -8,17 +8,17 @@
 @Scripts.Render("~/bundles/dataTables")
 @Styles.Render("~/DataTables/css")
 
-<h2>DataTablesAjax</h2>
+<h2>DataTables - Ajax</h2>
 
 <p>
     @Html.ActionLink("Criar Cliente", "CadastrarCliente")
 </p>
-<div class="divTopTable">
+<div>
     <h3>
         Requisição 100% Ajax
     </h3>
 </div>
-<table class="_tbDataTables" ajaxsource="ProcessarDataTables" serverside="true">
+<table class="_tbDataTables" ajaxsource="ProcessarDataTables" serverside="true" processing="true">
     <thead>
         <tr>
             <th column="IdCliente">

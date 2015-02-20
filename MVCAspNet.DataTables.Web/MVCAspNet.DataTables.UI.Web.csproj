@@ -197,39 +197,18 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\DataTables-1.10.4\css\dataTables.responsive.scss" />
     <Content Include="Content\DataTables-1.10.4\css\dataTables.jqueryui.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Config\DataTables\buildDataTables.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.autoFill.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.autoFill.min.js" />
     <Content Include="Scripts\DataTables-1.10.4\dataTables.bootstrap.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colReorder.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colReorder.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colVis.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colVis.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedColumns.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedColumns.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedHeader.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedHeader.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.foundation.js" />
     <Content Include="Scripts\DataTables-1.10.4\dataTables.jqueryui.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.keyTable.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.keyTable.min.js" />
     <Content Include="Scripts\DataTables-1.10.4\dataTables.responsive.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.responsive.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.scroller.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.scroller.min.js" />
     <Content Include="Scripts\DataTables-1.10.4\dataTables.tableTools.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.tableTools.min.js" />
     <Content Include="Scripts\DataTables-1.10.4\jquery.dataTables.js" />
-    <Content Include="Scripts\DataTables-1.10.4\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -256,6 +235,7 @@
     <Content Include="Views\Cliente\Editar.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Home\DataTablesHTMLHelper.cshtml" />
+    <Content Include="Views\Home\DataTablesAjaxHTMLHelper.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

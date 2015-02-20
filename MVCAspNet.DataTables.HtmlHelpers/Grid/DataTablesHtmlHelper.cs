@@ -22,9 +22,9 @@ namespace MVCAspNet.DataTables.HtmlHelpers.Grid
             var stringTable = new StringBuilder();
 
             stringTable.Append("<table class=\"_tbDataTables\" lengthchange=\"");
-            stringTable.Append(lengthchange);
+            stringTable.Append(lengthchange.ToString().ToLower());
             stringTable.Append("\" filter=\"");
-            stringTable.Append(filter);
+            stringTable.Append(filter.ToString().ToLower());
             stringTable.Append("\">");
 
             stringTable.Append(BuildeTHead<T>());
@@ -58,19 +58,19 @@ namespace MVCAspNet.DataTables.HtmlHelpers.Grid
             var stringTable = new StringBuilder();
 
             stringTable.Append("<table class=\"_tbDataTables\" serverside=\"");
-            stringTable.Append(serverSide);
+            stringTable.Append(serverSide.ToString().ToLower());
             stringTable.Append("\" lengthchange=\"");
-            stringTable.Append(lengthChange);
+            stringTable.Append(lengthChange.ToString().ToLower());
             stringTable.Append("\" filter=\"");
-            stringTable.Append(filter);
+            stringTable.Append(filter.ToString().ToLower());
             stringTable.Append("\" ajaxsource=\"");
             stringTable.Append(ajaxSource);
             stringTable.Append("\" servermethod=\"");
             stringTable.Append(serverMethod);
             stringTable.Append("\" processing=\"");
-            stringTable.Append(processing);
+            stringTable.Append(processing.ToString().ToLower());
             stringTable.Append("\" destroy=\"");
-            stringTable.Append(destroy);
+            stringTable.Append(destroy.ToString().ToLower());
             stringTable.Append("\">");
 
             stringTable.Append(BuildeTHead<T>());
