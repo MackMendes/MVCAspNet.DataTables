@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Web.Mvc;
 
@@ -37,7 +38,7 @@ namespace MVCAspNet.DataTables.HtmlHelpers.Grid
                 PropertyInfo[] properties = typeT.GetProperties();
 
                 foreach (var propertyItem in properties)
-                {               
+                {
                     stringTable.Append("<td>");
                     stringTable.Append(propertyItem.GetValue(itemT));
                     stringTable.Append("</td>");
@@ -50,6 +51,35 @@ namespace MVCAspNet.DataTables.HtmlHelpers.Grid
 
             return new MvcHtmlString(stringTable.ToString());
         }
+
+
+        public static MvcHtmlString DataTablesJqueryAjax<T>(this HtmlHelper html, string ajaxSource, [Optional]bool serverSide, [Optional]bool destroy, bool lengthChange = true, bool filter = true, bool processing = true, string serverMethod = "GET")
+        {
+            var stringTable = new StringBuilder();
+
+            stringTable.Append("<table class=\"_tbDataTables\" serverside=\"");
+            stringTable.Append(serverSide);
+            stringTable.Append("\" lengthchange=\"");
+            stringTable.Append(lengthChange);
+            stringTable.Append("\" filter=\"");
+            stringTable.Append(filter);
+            stringTable.Append("\" ajaxsource=\"");
+            stringTable.Append(ajaxSource);
+            stringTable.Append("\" servermethod=\"");
+            stringTable.Append(serverMethod);
+            stringTable.Append("\" processing=\"");
+            stringTable.Append(processing);
+            stringTable.Append("\" destroy=\"");
+            stringTable.Append(destroy);
+            stringTable.Append("\">");
+
+            stringTable.Append(BuildeTHead<T>());
+
+            stringTable.Append("<tbody></tbody></table>");
+
+            return new MvcHtmlString(stringTable.ToString());
+        }
+
 
         /// <summary>
         /// Construir o thead da Table
