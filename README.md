@@ -1,11 +1,11 @@
 # MVCAspNet.DataTables
 DataTables (Jquery) no MVC Asp.Net.
 
-Função para facilitar a utlização do Plugin DataTables Jquery.
-
-Criado por: Charles Mendes de Macedo <br />
+Função para facilitar a utlização do plugin DataTables Jquery(http://www.datatables.net/).
 
 <h2>Como utilizar:</h2>
+     Criado por: Charles Mendes de Macedo
+     
      Basicamente para utilizar é necessário que a Table(<table>) tenha a classe "_tbDataTables". 
      Essa table tem que ter a separação de <thead> <tbody>.
      ** Forma de atribuir o Plugin:
