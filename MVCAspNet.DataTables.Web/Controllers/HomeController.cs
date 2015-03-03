@@ -12,6 +12,11 @@ namespace MVCAspNet.DataTables.Web.Controllers
             : base(new Cliente().GetListFakeCliente(4))
         { }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult DataTables()
         {
