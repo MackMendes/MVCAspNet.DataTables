@@ -77,11 +77,9 @@ $(document).ready(function () {
 // Author: Charles Mendes de Macedo
 PageDataTables.Load = function () {
     var tables = $('._tbDataTables');
-    if (tables.length > 0) {
-        for (var i = 0; i < tables.length; i++) {
-            var table = $(tables[i]);
-            table.dataTable(PageDataTables.GetAtributos(table));
-        }
+    for (var i = 0; i < tables.length; i++) {
+        var table = $(tables[i]);
+        table.dataTable(PageDataTables.GetAtributos(table));
     }
 }
 
