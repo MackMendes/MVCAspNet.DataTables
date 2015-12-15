@@ -69,7 +69,7 @@ var PageDataTables = {};
 
 // Carregar o DataTable após carregar tudo
 // Author: Charles Mendes de Macedo
-$(document).ready(PageDataTables.Load);
+$(document).ready(function () { PageDataTables.Load() });
 
 // Função que Carrega o DataTables em todos as table's que tiver com o classe _tbDataTables
 // Author: Charles Mendes de Macedo
