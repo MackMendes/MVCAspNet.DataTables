@@ -11,16 +11,16 @@ namespace MVCAspNet.DataTables.Framework
         #region Varíaveis Globais
 
         private IList<T> listaDados;
-        string echo = "";
-        int iColumns = 0;
-        int iDisplayStart = 0;
-        int iDisplayLength = 0;
-        IList<string> columnNames = new List<string>();
-        Dictionary<string, string> columnNamesOrder = new Dictionary<string, string>();
-        string iSortingCols = "";
-        int regExibir = 0;
-        int startExibir = 0;
-        int totalRegistros = 0;
+        private string echo = "";
+        private int iColumns = 0;
+        private int iDisplayStart = 0;
+        private int iDisplayLength = 0;
+        private IList<string> columnNames = new List<string>();
+        private Dictionary<string, string> columnNamesOrder = new Dictionary<string, string>();
+        private string iSortingCols = "";
+        private int regExibir = 0;
+        private int startExibir = 0;
+        private int totalRegistros = 0;
 
         #endregion
 
@@ -31,8 +31,8 @@ namespace MVCAspNet.DataTables.Framework
         /// <param name="totalRegistrosSemFiltro">Total de Registros sem Filtro</param>
         public DataTableManager(IList<T> data, int totalRegistrosSemFiltro)
         {
-            listaDados = data;
-            totalRegistros = totalRegistrosSemFiltro;
+            this.listaDados = data;
+            this.totalRegistros = totalRegistrosSemFiltro;
         }
 
         /// <summary>
@@ -42,13 +42,13 @@ namespace MVCAspNet.DataTables.Framework
         /// <returns>Retorna o objeto</returns>
         public object GetDataTablesRequest(HttpRequestBase request)
         {
-            echo = request.Params["sEcho"].ToString();
-            iColumns = int.Parse(request.Params["iColumns"].ToString());
-            iDisplayStart = int.Parse(request.Params["iDisplayStart"].ToString());
-            iDisplayLength = int.Parse(request.Params["iDisplayLength"].ToString());
-            iSortingCols = request.Params["iSortingCols"].ToString();
-            regExibir = iDisplayLength;
-            startExibir = iDisplayStart;
+            this.echo = request.Params["sEcho"].ToString();
+            this.iColumns = int.Parse(request.Params["iColumns"].ToString());
+            this.iDisplayStart = int.Parse(request.Params["iDisplayStart"].ToString());
+            this.iDisplayLength = int.Parse(request.Params["iDisplayLength"].ToString());
+            this.iSortingCols = request.Params["iSortingCols"].ToString();
+            this.regExibir = iDisplayLength;
+            this.startExibir = iDisplayStart;
 
             for (int i = 0; i < iColumns; i++)
             {
