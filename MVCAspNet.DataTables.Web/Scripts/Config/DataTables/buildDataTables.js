@@ -65,13 +65,11 @@
 
 // ************************************************* //
 // ** Objecto para armazenar as functions criadas ** //
-var PageDataTables = new Object();
+var PageDataTables = {};
 
 // Carregar o DataTable após carregar tudo
 // Author: Charles Mendes de Macedo
-$(document).ready(function () {
-    PageDataTables.Load();
-});
+$(document).ready(PageDataTables.Load);
 
 // Função que Carrega o DataTables em todos as table's que tiver com o classe _tbDataTables
 // Author: Charles Mendes de Macedo
@@ -86,7 +84,7 @@ PageDataTables.Load = function () {
 // Pegar todos os atributos da table para montar Json que o plugin (DataTables) utiliza
 // Author: Charles Mendes de Macedo
 PageDataTables.GetAtributos = function (objTable) {
-    var atributos = new Object();
+    var atributos = {};
     //**********************************************************************************///
     /* Iniciando os atributos (Default) */
     atributos.aoColumns = [];                                           // Colunas
