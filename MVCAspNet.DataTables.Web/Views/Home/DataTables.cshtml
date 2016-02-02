@@ -34,11 +34,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Fone)
             </th>
+            <th sortable="false" visible="true">
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            <th sortable="false" visible="true">
-            </th>
+
         </tr>
     </thead>
     <tbody>
@@ -57,13 +58,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Fone)
                 </td>
+                
                 <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
+
                     @Html.ActionLink("Editar", "Editar", "Cliente", new { id = item.IdCliente }, new { @class = "" }) |
                     @Html.ActionLink("Detalhe", "Detalhe", "Cliente", new { id = item.IdCliente }, new { @class = "" }) |
                     @Html.ActionLink("Delete", "Delete", "Cliente", new { id = item.IdCliente }, new { @class = "" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
                 </td>
             </tr>
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Reflection;
 using System.Web;
 
@@ -17,6 +18,10 @@ namespace MVCAspNet.DataTables.Framework
         private int iDisplayLength = 0;
         private IList<string> columnNames = new List<string>();
         private Dictionary<string, string> columnNamesOrder = new Dictionary<string, string>();
+
+        //Filter by Column
+        private Dictionary<string, string> columnNamesFilter = new Dictionary<string, string>();
+
         private string iSortingCols = "";
         private int regExibir = 0;
         private int startExibir = 0;
@@ -52,56 +57,186 @@ namespace MVCAspNet.DataTables.Framework
 
             for (int i = 0; i < iColumns; i++)
             {
-                string nomeColuna = request.Params["mDataProp_" + i.ToString()].ToString();
+                string nomeColuna = request.Params[string.Concat("mDataProp_", i)].ToString();
                 columnNames.Add(nomeColuna);
             }
 
             for (int i = 0; i < iColumns; i++)
             {
-                if (request.Params["iSortCol_" + i.ToString()] != null)
+                if (request.Params[string.Concat("iSortCol_", i)] != null)
                 {
-                    int idxColuna = int.Parse(request.Params["iSortCol_" + i.ToString()]);
+                    int idxColuna = int.Parse(request.Params[string.Concat("iSortCol_", i)]);
                     string nomeColuna = columnNames[idxColuna];
-                    string orderDirection = request.Params["sSortDir_" + i.ToString()];
-                    columnNamesOrder.Add(nomeColuna, orderDirection);
+                    string orderDirection = request.Params[string.Concat("sSortDir_", i)];
+                    this.columnNamesOrder.Add(nomeColuna, orderDirection);
+                }
+
+                if (request.Params[string.Concat("sSearch_", i)] != null)
+                {
+                    string nomeColuna = request.Params[string.Concat("mDataProp_", i)];
+                    string valueFilter = request.Params[string.Concat("sSearch_", i)];
+                    if (!string.IsNullOrEmpty(valueFilter) && !this.columnNamesFilter.ContainsKey(nomeColuna))
+                        this.columnNamesFilter.Add(nomeColuna, valueFilter);
                 }
             }
 
             if (iDisplayStart > listaDados.Count)
-            {
                 startExibir = 0;
-            }
 
             if (iDisplayStart + iDisplayLength > listaDados.Count)
-            {
                 regExibir = listaDados.Count - startExibir;
-            }
 
-            IOrderedEnumerable<T> listaPartialSort = null;
+            //Order a lista
+            List<T> listaDadosSorted = GetListPartialSort().ToList<T>();
 
-            foreach (string columnName in columnNamesOrder.Keys)
+            // Filtra
+            listaDadosSorted = this.FilterByColumn(listaDadosSorted);
+
+            if (listaDadosSorted.Count > regExibir)
+                listaDadosSorted.GetRange(startExibir, regExibir); // Pega o range para ser visualizado no página
+
+            var objeto = this.BuilderObjetoRetorno(listaDadosSorted.Count, this.echo, listaDadosSorted);
+            return objeto;
+        }
+
+        /// <summary>
+        /// Método para filtrar por coluna, a lista informada no parâmetro de entrada, com base no tipo da coluna
+        /// </summary>
+        /// <param name="listaDadosFiltered">Lista informada para ser filtrada</param>
+        /// <returns>Resultado da lista filtrada</returns>
+        private List<T> FilterByColumn(IList<T> listaDadosFiltered)
+        {
+            IQueryable<T> listInQueryable = listaDadosFiltered.AsQueryable();
+
+            string queryWhere = string.Empty;
+            foreach (string columnName in this.columnNamesFilter.Keys)
             {
                 PropertyInfo propert = typeof(T).GetProperty(columnName);
 
-                if (columnNamesOrder[columnName] == "asc")
+                switch (Type.GetTypeCode(propert.PropertyType))
+                {
+                    case TypeCode.Boolean:
+                        queryWhere = string.Concat(columnName, "==Boolean?");
+                        break;
+                    case TypeCode.DBNull:
+                        queryWhere = string.Concat(columnName, "==null");
+                        break;
+                    case TypeCode.DateTime:
+                        queryWhere = string.Concat(columnName, "==DateTime?");
+                        break;
+                    case TypeCode.Decimal:
+                        queryWhere = string.Concat(columnName, "==Decimal?");
+                        break;
+                    case TypeCode.Double:
+                        queryWhere = string.Concat(columnName, "==Double?");
+                        break;
+                    case TypeCode.UInt16:
+                    case TypeCode.Int16:
+                        queryWhere = string.Concat(columnName, "==Int16?");
+                        break;
+                    case TypeCode.UInt32:
+                    case TypeCode.Int32:
+                        queryWhere = string.Concat(columnName, "==Int32?");
+                        break;
+                    case TypeCode.UInt64:
+                    case TypeCode.Int64:
+                        queryWhere = string.Concat(columnName, "==Int64?");
+                        break;
+                    case TypeCode.Char:
+                    case TypeCode.String:
+                        queryWhere = string.Concat(columnName, ".ToLower().Contains");
+                        break;
+                    default:
+                        queryWhere = string.Empty;
+                        break;
+                }
+
+                listInQueryable = listInQueryable.Where(string.Concat(queryWhere, "(@0)"), this.ParseValueInObject(this.columnNamesFilter[columnName], propert.PropertyType));
+            }
+
+            return listInQueryable.ToList<T>();
+        }
+
+        /// <summary>
+        /// Converte o valor informando no parâmetro de entrada (string), para o tipo informando no parâmetro de entrada
+        /// </summary>
+        /// <param name="valor">Valor informando no parâmetro de entrada para ser convertido</param>
+        /// <param name="propertyType">Tipo do valor a ser convertido</param>
+        /// <returns>Objeto com o valor convertido</returns>
+        private object ParseValueInObject(string valor, Type propertyType)
+        {
+            switch (Type.GetTypeCode(propertyType))
+            {
+                case TypeCode.Boolean:
+                    Boolean bl;
+                    if (Boolean.TryParse(valor, out bl)) return bl;
+                    goto default;
+                case TypeCode.DateTime:
+                    DateTime dt;
+                    if (DateTime.TryParse(valor, out dt)) return dt;
+                    goto default;
+                case TypeCode.Decimal:
+                    Decimal dc;
+                    if (Decimal.TryParse(valor, out dc)) return dc;
+                    goto default;
+                case TypeCode.Double:
+                    Double db;
+                    if (Double.TryParse(valor, out db)) return db;
+                    goto default;
+                case TypeCode.UInt16:
+                case TypeCode.Int16:
+                    Int16 it16;
+                    if (Int16.TryParse(valor, out it16)) return it16;
+                    goto default;
+                case TypeCode.UInt32:
+                case TypeCode.Int32:
+                    Int32 it32;
+                    if (Int32.TryParse(valor, out it32)) return it32;
+                    goto default;
+                case TypeCode.UInt64:
+                case TypeCode.Int64:
+                    Int64 it64;
+                    if (Int64.TryParse(valor, out it64)) return it64;
+                    goto default;
+                case TypeCode.Char:
+                case TypeCode.String:
+                    return valor.ToLower().ToString();
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Método que retorna um objeto de Ordenação para ser aplicada
+        /// </summary>
+        /// <returns></returns>
+        private IOrderedEnumerable<T> GetListPartialSort()
+        {
+            IOrderedEnumerable<T> listaPartialSort = null;
+
+            foreach (string columnName in this.columnNamesOrder.Keys)
+            {
+                PropertyInfo propert = typeof(T).GetProperty(columnName);
+
+                if (this.columnNamesOrder[columnName] == "asc")
                 {
                     if (listaPartialSort == null)
                     {
                         if (propert.PropertyType == typeof(String))
                         {
-                            listaPartialSort = listaDados.OrderBy(GetFuncao<string>(columnName));
+                            listaPartialSort = this.listaDados.OrderBy(GetFuncao<string>(columnName));
                         }
                         else if ((propert.PropertyType == typeof(Boolean)))
                         {
-                            listaPartialSort = listaDados.OrderBy(GetFuncao<bool>(columnName));
+                            listaPartialSort = this.listaDados.OrderBy(GetFuncao<bool>(columnName));
                         }
                         else if ((propert.PropertyType == typeof(DateTime)))
                         {
-                            listaPartialSort = listaDados.OrderBy(GetFuncao<DateTime>(columnName));
+                            listaPartialSort = this.listaDados.OrderBy(GetFuncao<DateTime>(columnName));
                         }
                         else
                         {
-                            listaPartialSort = listaDados.OrderBy(GetFuncao<int>(columnName));
+                            listaPartialSort = this.listaDados.OrderBy(GetFuncao<int>(columnName));
                         }
                     }
                     else
@@ -130,19 +265,19 @@ namespace MVCAspNet.DataTables.Framework
                     {
                         if (propert.PropertyType == typeof(String))
                         {
-                            listaPartialSort = listaDados.OrderByDescending(GetFuncao<string>(columnName));
+                            listaPartialSort = this.listaDados.OrderByDescending(GetFuncao<string>(columnName));
                         }
                         else if (propert.PropertyType == typeof(Boolean))
                         {
-                            listaPartialSort = listaDados.OrderByDescending(GetFuncao<bool>(columnName));
+                            listaPartialSort = this.listaDados.OrderByDescending(GetFuncao<bool>(columnName));
                         }
                         else if (propert.PropertyType == typeof(DateTime))
                         {
-                            listaPartialSort = listaDados.OrderByDescending(GetFuncao<DateTime>(columnName));
+                            listaPartialSort = this.listaDados.OrderByDescending(GetFuncao<DateTime>(columnName));
                         }
                         else
                         {
-                            listaPartialSort = listaDados.OrderByDescending(GetFuncao<int>(columnName));
+                            listaPartialSort = this.listaDados.OrderByDescending(GetFuncao<int>(columnName));
                         }
                     }
                     else
@@ -167,9 +302,7 @@ namespace MVCAspNet.DataTables.Framework
                 }
             }
 
-            IList<T> listaDadosSorted = listaPartialSort.ToList<T>().GetRange(startExibir, regExibir);
-            var objeto = this.BuilderObjetoRetorno(listaDados.Count, this.echo, listaDadosSorted);
-            return objeto;
+            return listaPartialSort;
         }
 
         /// <summary>
@@ -178,7 +311,7 @@ namespace MVCAspNet.DataTables.Framework
         /// <typeparam name="TipoRetorno">Retorno do tipo informado</typeparam>
         /// <param name="propertyName">Nome da Propriedade</param>
         /// <returns>Retorna a função</returns>
-        public Func<T, TRetorno> GetFuncao<TRetorno>(string propertyName)
+        private Func<T, TRetorno> GetFuncao<TRetorno>(string propertyName)
         {
             PropertyInfo propert = typeof(T).GetProperty(propertyName);
             Func<T, TRetorno> funcao = (Func<T, TRetorno>)Delegate.CreateDelegate(typeof(Func<T, TRetorno>), null, propert.GetGetMethod());

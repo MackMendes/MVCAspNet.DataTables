@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "DataTablesAjaxToWorkList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/DataTables/css")
+
+<link href="~/Content/DataTables-1.10.10/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+
+<h2>DataTables - Para WorkList  (Requisição 100% Ajax)</h2>
+<p>
+    @Html.ActionLink("Criar Cliente", "CadastrarCliente")
+</p>
+
+<fieldset class="form-inline workListfieldset">
+    <legend>Filtro</legend>
+    <div class="form-group">
+        <label for="txtIdCliente">IdCliente</label>
+        <input class="form-control input-sm" type="text" id="txtIdCliente" indexcol="0" />
+    </div>
+    <div class="form-group">
+        <label for="txtNome">Nome</label>
+        <input class="form-control input-sm" type="text" id="txtNome" indexcol="1" />
+    </div>
+    <div class="form-group">
+        <label for="txtIdade">Idade</label>
+        <input class="form-control input-sm" type="number" id="txtIdade" indexcol="2" />
+    </div>
+    <div class="form-group">
+        <label for="txtFone">Fone</label>
+        <input class="form-control input-sm" type="text" id="txtFone" indexcol="4" />
+    </div>
+    <div class="form-group">
+        <label for="txtEmail">Email</label>
+        <input class="form-control input-sm" type="text" id="txtEmail" indexcol="5" />
+    </div>
+</fieldset>
+
+<div class="container-fluid">
+
+    <table id="tbWorkList" serverside="true" lengthchange="true" filter="true" ajaxsource="ProcessarDataTables" servermethod="GET" processing="true" destroy="false"
+           class="stripe row-border order-column">
+        <thead>
+            <tr>
+                <th column="IdCliente">IdCliente</th>
+                <th column="Nome">Nome</th>
+                <th column="Idade">Idade</th>
+                <th column="Sexo">Sexo</th>
+                <th column="Fone">Fone</th>
+                <th column="Email">Email</th>
+
+                <th column="Sexo">Sexo2</th>
+                <th column="Fone">Fone2</th>
+                <th column="Email">Email2</th>
+
+                <th column="Sexo">Sexo3</th>
+                <th column="Fone">Fone3</th>
+                <th column="Email">Email3</th>
+
+
+                <th column="Sexo">Sexo4</th>
+                <th column="Fone">Fone4</th>
+                <th column="Email">Email4</th>
+
+                <th column="Sexo">Sexo5</th>
+                <th column="Fone">Fone5</th>
+                <th column="Email">Email5</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/DataTables-1.10.10/dataTables.fixedColumns.min.js"></script>
+    <script src="~/Scripts/View/Home/ajaxToWorkList.js"></script>
+}

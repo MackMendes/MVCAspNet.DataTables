@@ -9,7 +9,7 @@ namespace MVCAspNet.DataTables.Web.Controllers
         private readonly Cliente _cliente = new Cliente();
 
         public HomeController()
-            : base(new Cliente().GetListFakeCliente(4))
+            : base(new Cliente().GetListFakeCliente(50))
         { }
 
         public ActionResult Index()
@@ -45,6 +45,12 @@ namespace MVCAspNet.DataTables.Web.Controllers
         {
             var resultado = _cliente.GetObjectClienteByRequest(_listT, Request);
             return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult DataTablesAjaxToWorkList()
+        {
+            return View();
         }
 
         public ActionResult ProcessarAoIniciar()

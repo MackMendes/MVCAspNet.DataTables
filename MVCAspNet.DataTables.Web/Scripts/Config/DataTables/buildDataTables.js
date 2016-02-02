@@ -1,4 +1,4 @@
-// ********* Arquivo .js para configuração e atribuição do Plugin DataTables. *********
+﻿// ********* Arquivo .js para configuração e atribuição do Plugin DataTables. *********
 // Criado por: Charles Mendes de Macedo
 /** Como utilizar:
      Basicamente para utilizar é necessário que a Table(<table>) tenha a classe "_tbDataTables". Essa table tem que ter a separação de <thead> <tbody>!
@@ -83,7 +83,7 @@ var BuildDataTables = {
 
     // Pegar todos os atributos da table para montar Json que o plugin (DataTables) utiliza
     // Author: Charles Mendes de Macedo
-    GetAtributos: function ($objTable) {
+    GetAtributos: function ($objTable, options) {
         var atributos = {};
         //**********************************************************************************///
         /* Iniciando os atributos (Default) */
@@ -103,6 +103,8 @@ var BuildDataTables = {
 
         //*********************************************************************************///
         /* Pegando os atributos no Objeto Table (jquery) passado pelo parametro de entrada */
+
+        if (options) { $.extend(atributos, options); }
 
         // Pegando o nome das atributos do Json para cada coluna na ordem colocado no thead ///
         var tableTh = $objTable.find('thead tr th');

@@ -85,7 +85,7 @@ namespace MVCAspNet.DataTables.Web.Controllers
         {
             try
             {
-                var cliente = _listT.FirstOrDefault(x => x.IdCliente == id);
+                var cliente = _listT.First(x => x.IdCliente == id);
                 _listT.Remove(cliente);
                 return RedirectToAction("DataTables", "Home");
             }
@@ -97,7 +97,7 @@ namespace MVCAspNet.DataTables.Web.Controllers
 
         private ViewResult GetClienteById(int id)
         {
-            var cliente = _listT.FirstOrDefault(x => x.IdCliente == id);
+            var cliente = _listT.First(x => x.IdCliente == id);
             return View(cliente);
         }
     }

@@ -24,17 +24,21 @@ namespace MVCAspNet.DataTables.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
-                      "~/Scripts/DataTables-1.10.4/jquery.dataTables.js",
-                      "~/Scripts/DataTables-1.10.4/dataTables.responsive.js",
+                      "~/Scripts/DataTables-1.10.10/jquery.dataTables.js",
+                      "~/Scripts/DataTables-1.10.10/dataTables.responsive.js",
                       "~/Scripts/Config/DataTables/buildDataTables.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryMask").Include(
+                "~/Scripts/jQueryMaskPlugin-v1.7.7/jquery.mask.js",
+                "~/Scripts/Config/jQueryMask/buildJQueryMask.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/DataTables/css").Include(
-                      "~/Content/DataTables-1.10.4/css/jquery.dataTables.css",
-                      "~/Content/DataTables-1.10.4/css/dataTables.jqueryui.css",
+                      "~/Content/DataTables-1.10.10/css/jquery.dataTables.css",
+                      "~/Content/DataTables-1.10.10/css/dataTables.jqueryui.css",
                       "~/Content/site.css"));
 
 
