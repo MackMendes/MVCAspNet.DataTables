@@ -91,11 +91,12 @@ namespace MVCAspNet.DataTables.Framework
 
             // Filtra
             listaDadosSorted = this.FilterByColumn(listaDadosSorted);
+            var totalRegistroDisplay = listaDadosSorted.Count;
 
-            if (listaDadosSorted.Count > regExibir)
-                listaDadosSorted.GetRange(startExibir, regExibir); // Pega o range para ser visualizado no página
+            if (totalRegistroDisplay > regExibir)
+                listaDadosSorted = listaDadosSorted.GetRange(startExibir, regExibir); // Pega o range para ser visualizado no página
 
-            var objeto = this.BuilderObjetoRetorno(listaDadosSorted.Count, this.echo, listaDadosSorted);
+            var objeto = this.BuilderObjetoRetorno(totalRegistroDisplay, this.echo, listaDadosSorted);
             return objeto;
         }
 
